@@ -76,7 +76,7 @@ def probando(request):
     
     numeros = random.choices(lista, k=50)
     
-    return render(request, 'probando_if_for', {"numeros": numeros})
+    return render(request, 'probando_if_for.html', {"numeros": numeros})
 
 def crear_auto(request, marca, modelo):
     auto = Auto(marca = marca, modelo = modelo)
