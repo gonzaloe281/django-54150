@@ -101,7 +101,7 @@ def crear_auto_v2(request):
             datos = formulario.cleaned_data
             auto = Auto(marca= request.POST.get('marca'), modelo= request.POST.get('modelo'))
             auto.save()
-            return redirect('inicio')
+            return redirect('autos')
         
     formulario = CrearAutoFormulario()
     return render(request, 'inicio/crear_auto_v2.html', {'formulario': formulario})
