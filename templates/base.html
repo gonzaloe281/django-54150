@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     {% load static %}
@@ -7,11 +8,10 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>
-            {% block title_header %}
+            {% block title_head %}
             Landing Page - Start Bootstrap Theme
-            {% endblock title_header %}
+            {% endblock title_head %}
         </title>
-        
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -25,18 +25,34 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="inicio">inicio</a>
-                <a class="navbar-brand" href={% url "probando" %}>probando</a>
+                <a class="navbar-brand" href={% url "inicio" %}>Inicio</a>
+                {% comment %} <a class="navbar-brand" href={% url "probando" %}>Probando</a> {% endcomment %}
                 {% comment %} V1 {% endcomment %}
-                {% comment %} <a class="navbar-brand" href={% url "crear_auto" 'fiat' 'duna'%}>creacion</a> {% endcomment %}
+                {% comment %} <a class="navbar-brand" href={% url "crear_auto" "Fiat" "Duna"%}>Creacion Auto</a> {% endcomment %}
                 {% comment %} V2 {% endcomment %}
-                <a class="navbar-brand" href={% url "crear_auto_v2"%}>Crear Auto</a>
-                <a class="navbar-brand" href={% url "autos"%}>Autos</a>
+                <a class="navbar-brand" href={% url "autos" %}>Autos</a>
+                <a class="navbar-brand" href={% url "paletas" %}>Paletas</a>
 
-               <!-----> <a class="btn btn-primary" href="#signup">Sign Up</a>
+                <a class="navbar-brand" href='#'>{{}}</a>
+                {% if request.user.is_authenticated %}
+                {{request.user.is_authenticated}}
+                    <form action={% url "logout" %} method='POST'>
+                        {% csrf_token %}
+                    
+                    
+                        <input type="submit" class="btn btn-secondary" value="Cerrar Sesion">
+                    
+                    </form>
+                {% else %}
+                <a class="btn btn-primary" href={% url "login" %}>Iniciar Sesion</a>
+                {% endif %}
+                <a class="btn btn-primary" href={% url "registro" %}>Registrarse</a>
+                
+
             </div>
         </nav>
         <!-- Masthead-->
+        {% block header %}
         <header class="masthead">
             <div class="container position-relative">
                 <div class="row justify-content-center">
@@ -45,32 +61,20 @@
                             <!-- Page heading-->
                             <h1 class="mb-5">
                                 {% block h1_header %}
+                                Soy el base
                                 {% endblock h1_header %}
-
                             </h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                            
-                                <!-- Submit success message-->
-                                <!---->
-                                <!-- This is what your users will see when the form-->
-                                <!-- has successfully submitted-->
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
+        {% endblock header %}
+
         <main>
             {% block main %}{% endblock main %}
         </main>
-       
+
         <!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
