@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class NuestroFormularioDeCreacion(UserCreationForm):
-    email= forms.EmailField()
-    password1= forms.CharField(label='Contrasenia', widget=forms.PasswordInput)
-    password2= forms.CharField(label='Repetir Contrasenia', widget=forms.PasswordInput)
+    email = forms.EmailField()
+    password1 = forms.CharField(label="Contrasenia", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Repetir contrasenia", widget=forms.PasswordInput)
     
     class Meta:
         model = User
